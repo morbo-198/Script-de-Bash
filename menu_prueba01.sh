@@ -9,7 +9,7 @@ COLOR_MENU_FG="\033[38;5;15m"
 #Opciones del menú
 opciones=("[  ]Opción 1" "[  ]Opción 2" "[  ]Opción 3" "Salir")     #array de las opciones del menu
 num_opciones=${#opciones[@]}    #obtiene el total de elementos del array
-opcion_seleccionada=0
+opcion_seleccionada=1
 
 #Función para mostrar el menú
 mostrar_menu(){
