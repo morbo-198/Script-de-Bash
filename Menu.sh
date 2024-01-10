@@ -118,6 +118,23 @@ warningMsj(){
     done
 }
 
+setSquidChanges(){
+    warningMsj "Se ejecutara la revision de sintaxis, observe cuidadosamente el resultado en busca de errores o advertencias."
+    clear
+    echo "squid -k parse"
+    read
+    clear
+    if setSiNo "¿Desea aplicar los cambios? (S/N): ";then
+        warningMsj "Aplicando los cambios al finalizar verifique que no se muestren errores"
+        clear
+        echo "squid -k reconfigure"
+        read
+    else
+        echo "No aplico los cambios"
+        read
+    fi
+}
+
 #Ciclo para mostrar y pintar el menu
 while true; do
     sudo -k
@@ -158,22 +175,20 @@ while true; do
                     cargando "Abriendo Lista Olimpo" 0.03 2
                     clear
                     nano /home/memo/listas/listas2.sh
-                    
-                    #read -s -n 1 -p "Realizar verificación de sintaxix. Presione una tecla para continuar..."
-                    #squid -k parse
-                    warningMsj "Se ejecutara la revision de sintaxis, observe cuidadosamente el resultado en busca de errores o advertencias."                   
-                    clear
-                    echo "squid -k parse"
-                    read -n 1
-                    warningMsj "Al aplicar los cambios si el resultado anterior contaba con errores, esto podria ocasionar problemas"
-                    clear
-                    if setSiNo "¿Desea aplicar los cambios? (S/N): ";then
-                        echo "squid -k reconfigure"
-                        read
-                    else
-                        echo "No aplico los cambios"
-                        read
-                    fi
+                    setSquidChanges
+                    #warningMsj "Se ejecutara la revision de sintaxis, observe cuidadosamente el resultado en busca de errores o advertencias."                   
+                    #clear
+                    #echo "squid -k parse"
+                    #read -n 1
+                    #warningMsj "Al aplicar los cambios si el resultado anterior contaba con errores, esto podria ocasionar problemas"
+                    #clear
+                    #if setSiNo "¿Desea aplicar los cambios? (S/N): ";then
+                    #    echo "squid -k reconfigure"
+                    #    read
+                    #else
+                    #    echo "No aplico los cambios"
+                    #    read
+                    #fi
                     clear                    
 
                 elif  ! verificaRoot; then
@@ -184,20 +199,21 @@ while true; do
                         nano /home/memo/listas/listas.sh            
                         cargando "Abriendo Lista Olimpo" 0.03 2
                         clear
-                        nano /home/memo/listas/listas2.sh                        
-                        warningMsj "Se ejecutara la revision de sintaxis, observe cuidadosamente el resultado en busca de errores o advertencias."                                                         
-                        clear
-                        echo "squid -k parse"
-                        read -n 1
-                        warningMsj "Al aplicar los cambios si el resultado anterior contaba con errores, esto podria ocasionar problemas"
-                        clear
-                        if setSiNo "¿Desea aplicar los cambios? (S/N): ";then
-                            echo "squid -k reconfigure"
-                            read
-                        else
-                            echo "No aplico los cambios"
-                            read
-                        fi
+                        nano /home/memo/listas/listas2.sh
+                        setSquidChanges
+                        #warningMsj "Se ejecutara la revision de sintaxis, observe cuidadosamente el resultado en busca de errores o advertencias."
+                        #clear
+                        #echo "squid -k parse"
+                        #read -n 1
+                        #warningMsj "Al aplicar los cambios si el resultado anterior contaba con errores, esto podria ocasionar problemas"
+                        #clear
+                        #if setSiNo "¿Desea aplicar los cambios? (S/N): ";then
+                        #    echo "squid -k reconfigure"
+                        #    read
+                        #else
+                        #    echo "No aplico los cambios"
+                        #    read
+                        #fi
                         clear
                     elif ! $?; then
                         cargando "Contraseña incorrecta." 0.2 1
